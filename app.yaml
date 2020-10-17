@@ -1,0 +1,35 @@
+{
+    "name": "gather",
+    "region": "ams3",
+    "services":
+    [
+        {
+            "name": "rest",
+            "github":
+            {
+                "repo": "ChrisTalman/Gather",
+                "branch": "main",
+                "deploy_on_push": false
+            },
+            "source_dir": "Deployment/Rest/Container",
+            "dockerfile_path": "Deployment/Rest/Container/Dockerfile",
+            "instance_size_slug": "basic-xxs",
+            "instance_count": 1,
+            "envs":
+            [
+                {
+                    "key": "CONFIG_FILE_SOURCE",
+                    "value": "{{configFileSource}}",
+                    "scope": "RUN_TIME",
+                    "type": "SECRET"
+                }
+            ],
+            "routes":
+            [
+                {
+                    "path": "/api"
+                }
+            ]
+        }
+    ]
+}
